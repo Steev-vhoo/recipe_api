@@ -4,7 +4,7 @@ import recipeRouter from "./routes/recipe.js";
 import mongoose from "mongoose";
 
 //Connect to database
-await mongoose.connect(process.env.mongo_url)
+await mongoose.connect(process.env.mongo_url);
 
 //Create express app
 const app = express();
