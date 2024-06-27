@@ -1,35 +1,21 @@
 import { Router } from "express";
-import { RecipeModel } from "../models/recipe.js";
+import { addRecipes, deleteRecipe, getRecipe, getRecipes, signupRecipe, updateRecipe } from "../controllers/recipe.js";
 
 //Create a router
 const recipeRouter = Router()
+0
+//Define routes
+recipeRouter.get('/recipes', getRecipes)
 
-recipeRouter.get('/recipes', (req, res) => {
-    res.json(`All recipes`)
-})
+recipeRouter.post('/addrecipes', addRecipes)
 
-recipeRouter.post('/addrecipes', async (req, res) => {
+recipeRouter.patch('/addrecipes/:id', updateRecipe)
 
-    //Add recipe to database
-    await RecipeModel.create(req.body);
-    //Return response
-    res.json(`Recipe Added`) //Update
-})
+recipeRouter.delete(`/deleterecipe/:id`, deleteRecipe)
 
-recipeRouter.patch('/addrecipes/:id', (req, res) => {
-    res.json(`Recipe with ID: ${req.params.id} updated`) //Delete
-})
+recipeRouter.get(`/recipes/:id`, getRecipe)
 
-recipeRouter.delete(`/deleterecipe/:id`, (req, res) => {
-    res.json(`Recipe with ID: ${req.params.id} deleted`)
-})
-recipeRouter.get(`/recipes/:id`, (req, res) => {
-    res.json(`Recipe with ID: ${req.params.id} retrieved`)
-})
-
-recipeRouter.patch('/signup', (req, res) => {
-    res.json(`Account created successfully`)
-})
+recipeRouter.patch('/signup', signupRecipe)
 
 //Export router
 export default recipeRouter;
