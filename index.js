@@ -10,21 +10,25 @@ await mongoose.connect(process.env.mongo_url);
 
 //Create express app
 const app = express();
+
 //For documentation
 expressOasGenerator.handleResponses(app, {
+    alwaysServeDocs:true,
     tag: ['categories', 'recipes'],
     mongooseModels: mongoose.modelNames()
 });
 
 //Apply middleware
 app.use(express.json());
+app.use(express.static('uploads'));
+
 
 // Use Routes
 app.use(recipeRouter);
 app.use(categoryRouter);
 //For documentation
 expressOasGenerator.handleRequests();
-app.use((res, req) => res.redirect('/api-docs/'))
+app.use((res, req) => res.redirect('/api-docs/'));
 
 
 
