@@ -7,7 +7,7 @@ export const getRecipes = async (req, res, next) => {
         const { limit, skip, search } = req.query;
         //Get all recipes from database
         const allRecipes = await RecipeModel
-            .find({ name: search })  //You can search on the name
+            .find(filter)  //You can search on the name
             .limit(limit)  //To default the limit, you may use ||
             .skip(skip)    // You can skip some queries
         //Return all recipes

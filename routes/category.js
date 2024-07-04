@@ -1,6 +1,6 @@
 import { Router } from "express";
 import multer from "multer";  //For uploading files
-import { localUpload } from "../middleware/uploads.js";
+import { localUpload, remoteUpload } from "../middleware/uploads.js";
 import { getCategory, postCategory } from "../controllers/category.js";
 
 
@@ -13,7 +13,7 @@ const categoryRouter = Router()
 
 //Define routes
 categoryRouter.get('/categories', getCategory)
-categoryRouter.post('/categories', localUpload.single('image'), postCategory)
+categoryRouter.post('/categories', remoteUpload.single('image'), postCategory)
 // categoryRouter.patch()
 // categoryRouter.delete()
 
